@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -14,16 +15,15 @@ app.post("/api/chat", async (req, res) => {
     const userMessage = req.body.message;
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: userMessage }] }],
-        }),
-      }
-    );
-
+  `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: userMessage }] }],
+    }),
+  }
+);
     const data = await response.json();
 
     console.log("API response:", JSON.stringify(data));
