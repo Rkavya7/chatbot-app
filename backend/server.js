@@ -26,7 +26,7 @@ app.post("/api/chat", async (req, res) => {
 );
     const data = await response.json();
 
-    console.log("API response:", JSON.stringify(data));
+console.log("FULL RESPONSE:", JSON.stringify(data, null, 2));
 
     const reply =
       data.candidates?.[0]?.content?.parts?.[0]?.text ||
