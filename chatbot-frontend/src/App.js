@@ -69,12 +69,11 @@ function App() {
     setIsTyping(true);
 
     try {
-      const res = await fetch("https://chatbot-app-2izb.onrender.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
-      });
-
+      const res = await fetch("https://chatbot-app-2izb.onrender.com/api/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message }),
+});
       const data = await res.json();
 
       const botMsg = {
@@ -104,6 +103,7 @@ function App() {
     setMessage((prev) => prev + emojiObject.emoji);
     setShowEmojiPicker(false);
   };
+  
 
   // VOICE
   const startListening = () => {
@@ -119,6 +119,7 @@ function App() {
 
     recognition.start();
   };
+  
 
   return (
     <div className={`app ${darkMode ? "dark" : "light"}`}>
